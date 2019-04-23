@@ -17,9 +17,9 @@ var (
 	out         = flag.String("out", "local_ssl_exporter.prom", "Output file path.")
 )
 
-const version = "v0.0.1"
+const version = "v0.0.2"
 
-type Result struct {
+type result struct {
 	FilePath string
 	UnixTime int64
 	Days     int
@@ -67,8 +67,8 @@ func isExist(filename string) bool {
 	return err == nil
 }
 
-func checkCertificates(certFiles []string) []*Result {
-	ch := make(chan *Result)
+func checkCertificates(certFiles []string) []*result {
+	ch := make(chan *result)
 	for _, file := range certFiles {
 		go func(file string) {
 			line := strings.Split("openssl x509 -noout -enddate -in "+file, " ")
@@ -87,7 +87,7 @@ func checkCertificates(certFiles []string) []*Result {
 			}
 			sub := int(notAfter.Sub(time.Now()).Hours() / 24)
 
-			ch <- &Result{
+			ch <- &result{
 				FilePath: file,
 				UnixTime: notAfter.Unix(),
 				Days:     sub,
@@ -95,7 +95,7 @@ func checkCertificates(certFiles []string) []*Result {
 		}(file)
 	}
 
-	results := make([]*Result, 0)
+	results := make([]*result, 0)
 	for i := 0; i < len(certFiles); i++ {
 		results = append(results, <-ch)
 	}
