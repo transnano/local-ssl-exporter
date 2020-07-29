@@ -1,8 +1,5 @@
-# Default to Go 1.12
-ARG GO_VERSION=1.12
-
 # First stage: build the executable.
-FROM golang:${GO_VERSION}-alpine AS build_base
+FROM golang:1.12-alpine AS build_base
 
 # Install some dependencies needed to build the project
 RUN apk add bash ca-certificates git gcc g++ libc-dev
