@@ -36,7 +36,7 @@ nfpms:
     homepage: https://github.com/transnano/local-ssl-exporter
     maintainer: Transnano <transnano.jp@gmail.com>
     description: local-ssl-exporter is prometheus exporter for local ssl certification metrics.
-    license: Apache 2.0
+    license: MIT
     formats:
       - deb
       - rpm
