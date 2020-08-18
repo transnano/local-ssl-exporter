@@ -3,7 +3,7 @@ FROM golang:1.15-alpine AS build_base
 
 # Install some dependencies needed to build the project
 RUN apk add bash ca-certificates git gcc g++ libc-dev
-WORKDIR /go/src/gitlab.com/transnano/local-ssl-exporter
+WORKDIR /go/src/github.com/transnano/local-ssl-exporter
 
 # Force the go compiler to use modules
 ENV GO111MODULE=on

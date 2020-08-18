@@ -1,3 +1,3 @@
-module gitlab.com/transnano/local-ssl-exporter
+module github.com/transnano/local-ssl-exporter
 
-go 1.12
+go 1.15
