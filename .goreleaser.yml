@@ -8,12 +8,7 @@ builds:
   - main: .
     binary: local-ssl-exporter
     ldflags:
-      - -s -w
-      - -X github.com/prometheus/common/version.Version={{.Version}}
-      - -X github.com/prometheus/common/version.BuildDate={{.Date}}
-      - -X github.com/prometheus/common/version.Branch=master
-      - -X github.com/prometheus/common/version.Revision={{.ShortCommit}}
-      - -X github.com/prometheus/common/version.BuildUser=transnano
+      - -s -w -X main.version={{.Version}}
     env:
       - CGO_ENABLED=0
 archives:

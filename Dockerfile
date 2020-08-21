@@ -26,9 +26,9 @@ COPY . .
 RUN CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go install -a -tags netgo -ldflags '-w -extldflags "-static"' ./
 
 #In this last stage, we start from a fresh Alpine image, to reduce the image size and not ship the Go compiler in our production artifacts.
-FROM alpine AS local-ssl-exporter
+FROM alpine:3.12.0
 # We add the certificates to be able to verify remote local-ssl-exporter instances
-RUN apk add ca-certificates
+RUN apk --no-cache add ca-certificates
 # Finally we copy the statically compiled Go binary.
 COPY --from=server_builder /go/bin/local-ssl-exporter /bin/local-ssl-exporter
 ENTRYPOINT ["/bin/local-ssl-exporter"]

@@ -17,7 +17,7 @@ var (
 	out         = flag.String("out", "local_ssl_exporter.prom", "Output file path.")
 )
 
-const version = "v0.0.2"
+const version = "development"
 
 type result struct {
 	FilePath string
