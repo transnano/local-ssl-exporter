@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/transnano/local-ssl-exporter?style=flat)
 
-![Container image version](https://img.shields.io/docker/v/transnano/local-ssl-exporter?style=flat)
+![Container image version](https://img.shields.io/docker/v/transnano/local-ssl-exporter/latest?style=flat)
 ![Container image size](https://img.shields.io/docker/image-size/transnano/local-ssl-exporter/latest?style=flat)
 ![Container image pulls](https://img.shields.io/docker/pulls/transnano/local-ssl-exporter?style=flat)
 
