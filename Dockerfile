@@ -1,16 +1,28 @@
-FROM golang:1.15-alpine AS build_base
-RUN apk add bash ca-certificates git gcc g++ libc-dev
+# Start by building the application.
+FROM golang:1.15.0-buster as build
+
 WORKDIR /go/src/github.com/transnano/local-ssl-exporter
+# For building Go Module required
+ENV GOPROXY=direct
 ENV GO111MODULE=on
-COPY go.mod .
-RUN go mod download
-
-FROM build_base AS server_builder
+ENV GOARCH=amd64
+ENV GOOS=linux
+ENV CGO_ENABLED=1
+# Copy the Go Modules manifests
+COPY go.mod go.mod
+# COPY go.sum go.sum
+# cache deps before building and copying source so that we don't need to re-download as much
+# and so that source changes don't invalidate our downloaded layer
+RUN  go mod download
+# Copy the go source
 COPY . .
-RUN CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go install -a -tags netgo -ldflags '-w -extldflags "-static"' ./
+# Build
+RUN  go build -a -o local-ssl-exporter -ldflags "-s -w \
+-X main.version=$(git describe --tags --abbrev=0)"
 
-FROM alpine:3.12.0
+# Now copy it into our base image.
+FROM gcr.io/distroless/base-debian10
+#FROM gcr.io/distroless/base
 LABEL maintainer="Transnano <transnano.jp@gmail.com>"
-RUN apk --no-cache add ca-certificates
-COPY --from=server_builder /go/bin/local-ssl-exporter /bin/local-ssl-exporter
-ENTRYPOINT ["/bin/local-ssl-exporter"]
+COPY --from=build /go/src/github.com/transnano/local-ssl-exporter/local-ssl-exporter /
+ENTRYPOINT ["/local-ssl-exporter"]

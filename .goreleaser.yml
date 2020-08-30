@@ -4,13 +4,14 @@ env:
 before:
   hooks:
     - go mod tidy
+    - go mod download
 builds:
   - main: .
     binary: local-ssl-exporter
     ldflags:
       - -s -w -X main.version={{.Version}}
     env:
-      - CGO_ENABLED=0
+      - CGO_ENABLED=1
     ignore:
       - goos: darwin
         goarch: 386
