@@ -1,4 +1,4 @@
-# local ssl exporter ![Releases](https://github.com/transnano/local-ssl-exporter/workflows/Releases/badge.svg) ![Publish Docker image](https://github.com/transnano/local-ssl-exporter/workflows/Publish%20Docker%20image/badge.svg) ![Vulnerability Scan](https://github.com/transnano/local-ssl-exporter/workflows/Vulnerability%20Scan/badge.svg)
+# local ssl exporter ![Releases](https://github.com/transnano/local-ssl-exporter/workflows/Releases/badge.svg) ![Publish Docker image](https://github.com/transnano/local-ssl-exporter/workflows/Publish%20Docker%20image/badge.svg) ![Vulnerability Scan](https://github.com/transnano/local-ssl-exporter/workflows/Vulnerability%20Scan/badge.svg) ![Haskell Dockerfile Linter](https://github.com/transnano/local-ssl-exporter/workflows/Haskell%20Dockerfile%20Linter/badge.svg)
 
 ![License](https://img.shields.io/github/license/transnano/local-ssl-exporter?style=flat)
 

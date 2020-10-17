@@ -20,7 +20,7 @@ COPY . .
 RUN  go build -a -o local-ssl-exporter -ldflags "-s -w \
 -X main.version=$(git describe --tags --abbrev=0)"
 
-# Now copy it into our base image.
+# hadolint ignore=DL3006
 FROM gcr.io/distroless/base-debian10
 #FROM gcr.io/distroless/base
 LABEL maintainer="Transnano <transnano.jp@gmail.com>"
